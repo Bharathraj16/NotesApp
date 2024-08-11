@@ -1,13 +1,11 @@
 package com.example.notesappdb.presentation
 
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.notesappdb.data.Note
 import com.example.notesappdb.data.NoteDao
-import com.example.notesappdb.data.NotesDatabase
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -23,7 +21,8 @@ class NotesViewModel(
 
 
     private val isSortedByDateAdded = MutableStateFlow(true)
-    private var notes: StateFlow<List<Note>> = isSortedByDateAdded.flatMapLatest {sort->
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private var notes: StateFlow<List<Note>> = isSortedByDateAdded.flatMapLatest { sort->
         if(sort){
             dao.getNotesOrderedByDataAdded()
         }else{
