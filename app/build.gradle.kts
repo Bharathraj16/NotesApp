@@ -70,11 +70,12 @@ dependencies {
 
     val nav_version = "2.7.5"
     val compose_version = "1.6.0-alpha08"
-    val room = "2.5.0"
+    val room = "2.6.0"
     // Room
-    implementation("androidx.room:room-runtime:$room")
-    implementation("androidx.room:room-ktx:$room")
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
     kapt("androidx.room:room-compiler:$room")
+
 
     implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation("androidx.compose.ui:ui:$compose_version")
